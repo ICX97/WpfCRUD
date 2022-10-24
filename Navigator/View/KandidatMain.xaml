@@ -4,20 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Navigator.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="11"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="KandidatMain" Height="800" Width="800">
+        Title="KandidatMain" Height="800" Width="1650">
     <Grid>
         <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="10,100,10,361" ItemsSource="{Binding LstKandidat}" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}" />
-                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" />
-                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" />
-                <DataGridTextColumn Header="Godina Rodnjenja" Binding="{Binding GodinaRodjenja}" />
-                <DataGridTextColumn Header="e-mail" Binding="{Binding Email}" />
-                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" />
-                <DataGridTextColumn Header="Napomena" Binding="{Binding Napomena}" />
-                <DataGridTextColumn Header="Zaposlen" Binding="{Binding Zaposlen}" />
-                <DataGridTextColumn Header="Datum poslednje izmene" Binding="{Binding DatumPoslednjeIzmene}" />
+                <DataGridTextColumn IsReadOnly="True" Header="JMBG" Binding="{Binding JMBG}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Ime" Binding="{Binding Ime}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Prezime" Binding="{Binding Prezime}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Godina Rodnjenja" Binding="{Binding GodinaRodjenja}" />
+                <DataGridTextColumn IsReadOnly="True" Header="e-mail" Binding="{Binding Email}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Telefon" Binding="{Binding Telefon}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Napomena" Binding="{Binding Napomena}" />
+                <DataGridCheckBoxColumn IsReadOnly="True" Header="Zaposlen" Binding="{Binding Zaposlen}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Datum poslednje izmene" Binding="{Binding DatumPoslednjeIzmene}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
@@ -26,11 +34,11 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="5px">
-                                <Button x:Name="Azuriraj" Content="Azuriraj"
+                            <StackPanel Orientation="Horizontal">
+                                <Button FontSize="11" Margin="2,2,2,2" x:Name="Azuriraj" Content="Selektuj"
                                         Command="{Binding DataContext.UpdateCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding}"/>
-                                <Button x:Name="Obrisi" Content="Obrisi" 
+                                <Button FontSize="11" Margin="2,2,2,2" x:Name="Obrisi" Content="Obrisi" 
                                         Command="{Binding DataContext.DeleteCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding}"/>
 
@@ -82,11 +90,11 @@
                         <Label Grid.Row="6" Grid.Column="0" Content="Napomena"/>
                         <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewKandidat.Napomena}"/>
                         <Label Grid.Row="7" Grid.Column="0" Content="Zaposlen"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding NewKandidat.Zaposlen}"/>
+                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding NewKandidat.Zaposlen}"/>
                         <Label Grid.Row="8" Grid.Column="0" Content="Datum Poslednje izmene"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding NewKandidat.DatumPoslednjeIzmene}"/>
+                        <TextBox IsReadOnly="True" Grid.Row="8" Grid.Column="1" Text="{Binding NewKandidat.DatumPoslednjeIzmene}" Margin="0,0,0,62"/>
 
-                        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Kreiraj" Margin="30" HorizontalAlignment="Left" 
+                        <Button FontSize="11" Grid.Row="8" Content="Kreiraj" Margin="30,39,0,21" HorizontalAlignment="Left" 
                                 Width="100" Command="{Binding AddKandidatCommand}"/>
 
                     </Grid>
@@ -127,12 +135,12 @@
                         <Label Grid.Row="6" Grid.Column="0" Content="Napomena"/>
                         <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SelectedKandidat.Napomena}"/>
                         <Label Grid.Row="7" Grid.Column="0" Content="Zaposlen"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedKandidat.Zaposlen}"/>
+                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding SelectedKandidat.Zaposlen}"/>
                         <Label Grid.Row="8" Grid.Column="0" Content="Datum Poslednje izmene"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding SelectedKandidat.DatumPoslednjeIzmene}"/>
+                        <TextBox IsReadOnly="True"  Grid.Row="8" Grid.Column="1" Text="{Binding SelectedKandidat.DatumPoslednjeIzmene}" Margin="0,0,0,57"/>
 
-                        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Azuriraj" Margin="30" HorizontalAlignment="Right" 
-                                Width="100" Command="{Binding UpdateKandidatCommand}"/>
+                        <Button FontSize="11" Grid.Row="8" Content="Azuriraj" Margin="0,40,30,20" HorizontalAlignment="Right" 
+                                Width="100" Command="{Binding UpdateKandidatCommand}" Grid.Column="1"/>
 
                     </Grid>
                 </StackPanel>
@@ -150,8 +158,8 @@
             </ComboBox.Items>
         </ComboBox>
 
-        <Button  Command="{Binding ExportCommand}" x:Name="btnExport" Content="Exportuj u xslx fajl" HorizontalAlignment="Left" Margin="683,739,0,0" VerticalAlignment="Top" Width="75"  RenderTransformOrigin="0.474,14.646"/>
-        <Button x:Name="btnPretrazi" Content="Pretrazi" HorizontalAlignment="Left" Margin="307,61,0,0" VerticalAlignment="Top" Width="75"
+        <Button  Command="{Binding ExportCommand}" x:Name="btnExport" Content="Exportuj u xslx fajl" HorizontalAlignment="Left" Margin="1533,728,0,0" VerticalAlignment="Top" Width="75"  RenderTransformOrigin="0.474,14.646"/>
+        <Button x:Name="btnPretrazi" Content="Pretrazi" FontSize="11" HorizontalAlignment="Left" Margin="307,61,0,0" VerticalAlignment="Top" Width="75"
                 Command="{Binding PretraziCommand}"/>
     </Grid>
 </Window>

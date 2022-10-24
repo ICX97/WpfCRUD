@@ -203,6 +203,7 @@ namespace Navigator.ViewModel
         {
             
             navEntity.SaveChanges();
+            SelectedKandidat.DatumPoslednjeIzmene = DateTime.Now;
             SelectedKandidat = new Kandidat();
 
         }
@@ -213,11 +214,19 @@ namespace Navigator.ViewModel
         }
         private void AddKandidat(object obj)
         {
-            navEntity.Kandidats.Add(NewKandidat);
-            navEntity.SaveChanges();
-            LstKandidat.Add(NewKandidat);
-            
-            NewKandidat = new Kandidat();
+            if (obj == null)
+            {
+                
+            }
+            else
+            {
+                NewKandidat.DatumPoslednjeIzmene = DateTime.Now;
+                navEntity.Kandidats.Add(NewKandidat);
+                navEntity.SaveChanges();
+                LstKandidat.Add(NewKandidat);
+
+                NewKandidat = new Kandidat();
+            }
         }
 
         private void Delete(object obj)
