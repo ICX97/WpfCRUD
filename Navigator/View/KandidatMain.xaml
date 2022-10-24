@@ -1,0 +1,157 @@
+﻿<Window x:Class="Navigator.View.KandidatMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Navigator.View"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="KandidatMain" Height="800" Width="800">
+    <Grid>
+        <DataGrid x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Margin="10,100,10,361" ItemsSource="{Binding LstKandidat}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}" />
+                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" />
+                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" />
+                <DataGridTextColumn Header="Godina Rodnjenja" Binding="{Binding GodinaRodjenja}" />
+                <DataGridTextColumn Header="e-mail" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" />
+                <DataGridTextColumn Header="Napomena" Binding="{Binding Napomena}" />
+                <DataGridTextColumn Header="Zaposlen" Binding="{Binding Zaposlen}" />
+                <DataGridTextColumn Header="Datum poslednje izmene" Binding="{Binding DatumPoslednjeIzmene}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Akcija"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5px">
+                                <Button x:Name="Azuriraj" Content="Azuriraj"
+                                        Command="{Binding DataContext.UpdateCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"/>
+                                <Button x:Name="Obrisi" Content="Obrisi" 
+                                        Command="{Binding DataContext.DeleteCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Margin="0,394,0,46" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <StackPanel Margin="5">
+                    <Label Content="Napravi novog Kandidata" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid Margin="5" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="JMBG"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewKandidat.JMBG}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Ime"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewKandidat.Ime}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Prezime"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewKandidat.Prezime}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Godina rodjenja"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewKandidat.GodinaRodjenja}"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="Email"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewKandidat.Email}"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="Telefon"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewKandidat.Telefon}"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="Napomena"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewKandidat.Napomena}"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="Zaposlen"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding NewKandidat.Zaposlen}"/>
+                        <Label Grid.Row="8" Grid.Column="0" Content="Datum Poslednje izmene"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding NewKandidat.DatumPoslednjeIzmene}"/>
+
+                        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Kreiraj" Margin="30" HorizontalAlignment="Left" 
+                                Width="100" Command="{Binding AddKandidatCommand}"/>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <StackPanel Margin="5">
+                    <Label Content="Azuriraj Kandidata" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid Margin="5" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="JMBG"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  Text="{Binding SelectedKandidat.JMBG}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Ime"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedKandidat.Ime}"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Prezime"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedKandidat.Prezime}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Godina rodjenja"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedKandidat.GodinaRodjenja}"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="Email"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedKandidat.Email}"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="Telefon"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedKandidat.Telefon}"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="Napomena"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SelectedKandidat.Napomena}"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="Zaposlen"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedKandidat.Zaposlen}"/>
+                        <Label Grid.Row="8" Grid.Column="0" Content="Datum Poslednje izmene"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding SelectedKandidat.DatumPoslednjeIzmene}"/>
+
+                        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Azuriraj" Margin="30" HorizontalAlignment="Right" 
+                                Width="100" Command="{Binding UpdateKandidatCommand}"/>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Label Content="Pretraga" HorizontalAlignment="Left" Margin="48,14,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tip pretrage:" HorizontalAlignment="Left" Margin="28,55,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding SelectedPretraga, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPretraga" HorizontalAlignment="Left" Height="23" Margin="135,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="TipPretrage" SelectedItem="{Binding TipPretraga}" HorizontalAlignment="Left" Margin="135,59,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.Items>
+                <ComboBoxItem>JMBG</ComboBoxItem>
+                <ComboBoxItem>Ime</ComboBoxItem>
+                <ComboBoxItem>Prezime</ComboBoxItem>
+            </ComboBox.Items>
+        </ComboBox>
+
+        <Button  Command="{Binding ExportCommand}" x:Name="btnExport" Content="Exportuj u xslx fajl" HorizontalAlignment="Left" Margin="683,739,0,0" VerticalAlignment="Top" Width="75"  RenderTransformOrigin="0.474,14.646"/>
+        <Button x:Name="btnPretrazi" Content="Pretrazi" HorizontalAlignment="Left" Margin="307,61,0,0" VerticalAlignment="Top" Width="75"
+                Command="{Binding PretraziCommand}"/>
+    </Grid>
+</Window>
